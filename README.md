@@ -1,2 +1,2 @@
 # esp32-task-example
-Example of using two tasks using ESP32 and enabling the watchdog timer
+Example for Arduino using ESP32 and running two tasks and enabling the watchdog timer.
