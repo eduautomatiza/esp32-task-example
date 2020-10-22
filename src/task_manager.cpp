@@ -8,12 +8,12 @@
 
 //-----------------------------------------------------------------------------
 
-TaskHandle_t taskHandle_task2 = NULL;
-bool loopTask2WDTEnabled;
+static TaskHandle_t taskHandle_task2 = NULL;
+static bool loopTask2WDTEnabled = false;
 
 //-----------------------------------------------------------------------------
 
-void task2(void *pvParameters) {
+static void task2(void *pvParameters) {
   // setup
   setup2();
 

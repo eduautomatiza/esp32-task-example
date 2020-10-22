@@ -2,8 +2,6 @@
 
 #include "task_manager.h"
 
-//-----------------------------------------------------------------------------
-
 void setup2(void) {
   enableLoop2WDT();
 
@@ -11,13 +9,9 @@ void setup2(void) {
   Serial.println("Setup 2");
 }
 
-//-----------------------------------------------------------------------------
-
 void loop2(void) {
   // put your main code here, to run repeatedly:
 
   Serial.println("loop 2");
   delay(3000);
 }
-
-//-----------------------------------------------------------------------------

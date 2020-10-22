@@ -3,11 +3,8 @@
 
 #include "task_manager.h"
 
-//-----------------------------------------------------------------------------
-
 void setup() {
-
-  esp_task_wdt_init(60, true); // time in seconds
+  esp_task_wdt_init(60, true);  // time in seconds
   enableLoopWDT();
 
   Serial.begin(115200);
@@ -18,13 +15,9 @@ void setup() {
   createTask2();
 }
 
-//-----------------------------------------------------------------------------
-
 void loop() {
   // put your main code here, to run repeatedly:
 
   Serial.println("loop 1");
   delay(1000);
 }
-
-//-----------------------------------------------------------------------------
