@@ -8,7 +8,7 @@
 
 //-----------------------------------------------------------------------------
 
-static TaskHandle_t taskHandle_task2 = NULL;
+TaskHandle_t loop2TaskHandle = NULL;
 static bool loopTask2WDTEnabled = false;
 
 //-----------------------------------------------------------------------------
@@ -36,7 +36,7 @@ void createTask2(void) {
                           8192,               // stack size
                           NULL,               // pointer for task2 parameters
                           2,                  // priority
-                          &taskHandle_task2,  // handle for task
+                          &loop2TaskHandle,  // handle for task
                           1                   // run in core
   );
 }
@@ -44,8 +44,8 @@ void createTask2(void) {
 //-----------------------------------------------------------------------------
 
 void enableLoop2WDT(){
-    if(taskHandle_task2 != NULL){
-        if(esp_task_wdt_add(taskHandle_task2) != ESP_OK){
+    if(loop2TaskHandle != NULL){
+        if(esp_task_wdt_add(loop2TaskHandle) != ESP_OK){
             log_e("Failed to add loop2 task to WDT");
         } else {
             loopTask2WDTEnabled = true;
@@ -56,9 +56,9 @@ void enableLoop2WDT(){
 //-----------------------------------------------------------------------------
 
 void disableLoop2WDT(){
-    if(taskHandle_task2 != NULL && loopTask2WDTEnabled){
+    if(loop2TaskHandle != NULL && loopTask2WDTEnabled){
         loopTask2WDTEnabled = false;
-        if(esp_task_wdt_delete(taskHandle_task2) != ESP_OK){
+        if(esp_task_wdt_delete(loop2TaskHandle) != ESP_OK){
             log_e("Failed to remove loop2 task from WDT");
         }
     }
