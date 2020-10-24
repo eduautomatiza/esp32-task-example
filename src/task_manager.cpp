@@ -31,37 +31,37 @@ static void task2(void *pvParameters) {
 
 void createTask2(void) {
   loopTask2WDTEnabled = false;
-  xTaskCreatePinnedToCore(task2,              // task function
-                          "task2",            // taskname
-                          8192,               // stack size
-                          NULL,               // pointer for task2 parameters
-                          2,                  // priority
+  xTaskCreatePinnedToCore(task2,             // task function
+                          "task2",           // taskname
+                          8192,              // stack size
+                          NULL,              // pointer for task2 parameters
+                          2,                 // priority
                           &loop2TaskHandle,  // handle for task
-                          1                   // run in core
+                          1                  // run in core
   );
 }
 
 //-----------------------------------------------------------------------------
 
-void enableLoop2WDT(){
-    if(loop2TaskHandle != NULL){
-        if(esp_task_wdt_add(loop2TaskHandle) != ESP_OK){
-            log_e("Failed to add loop2 task to WDT");
-        } else {
-            loopTask2WDTEnabled = true;
-        }
+void enableLoop2WDT() {
+  if (loop2TaskHandle != NULL) {
+    if (esp_task_wdt_add(loop2TaskHandle) != ESP_OK) {
+      log_e("Failed to add loop2 task to WDT");
+    } else {
+      loopTask2WDTEnabled = true;
     }
+  }
 }
 
 //-----------------------------------------------------------------------------
 
-void disableLoop2WDT(){
-    if(loop2TaskHandle != NULL && loopTask2WDTEnabled){
-        loopTask2WDTEnabled = false;
-        if(esp_task_wdt_delete(loop2TaskHandle) != ESP_OK){
-            log_e("Failed to remove loop2 task from WDT");
-        }
+void disableLoop2WDT() {
+  if (loop2TaskHandle != NULL && loopTask2WDTEnabled) {
+    loopTask2WDTEnabled = false;
+    if (esp_task_wdt_delete(loop2TaskHandle) != ESP_OK) {
+      log_e("Failed to remove loop2 task from WDT");
     }
+  }
 }
 
 //-----------------------------------------------------------------------------
